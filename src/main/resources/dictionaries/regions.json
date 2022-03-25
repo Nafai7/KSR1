@@ -1,0 +1,152 @@
+{
+    "dictionary": "regions",
+    "data": [
+        {
+            "country": "west-germany",
+            "data": [
+                "Baden-Württemberg",
+                "Bavaria",
+                "Bremen",
+                "Hamburg",
+                "Hesse",
+                "Lower Saxony",
+                "North Rhine-Westphalia",
+                "Rhineland-Palatinate",
+                "Saarland",
+                "Schleswig-Holstein"
+            ]
+        },
+        {
+            "country": "usa",
+            "data": [
+                "Alabama",
+                "Alaska",
+                "Arizona",
+                "Arkansas",
+                "California",
+                "Colorado",
+                "Connecticut",
+                "Delware",
+                "Florida",
+                "Georgia",
+                "Hawaii",
+                "Idaho",
+                "Illinois",
+                "Indiana",
+                "Iowa",
+                "Kansas",
+                "Kentucky",
+                "Louisiana",
+                "Maine",
+                "Maryland",
+                "Massachusetts",
+                "Michigan",
+                "Minnesota",
+                "Mississippi",
+                "Missouri",
+                "Montana",
+                "Nebraska",
+                "Nevada",
+                "New Hampshire",
+                "New Jersey",
+                "New Mexico",
+                "New York",
+                "North Carolina",
+                "North Dakota",
+                "Ohio",
+                "Oklahoma",
+                "Oregon",
+                "Pennsylvania",
+                "Rhode Island",
+                "South Carolina",
+                "South Dakota",
+                "Tennessee",
+                "Texas",
+                "Utah",
+                "Vermont",
+                "Virginia",
+                "Washington",
+                "West Virginia",
+                "Wisconsin",
+                "Wyoming"
+            ]
+        },
+        {
+            "country": "france",
+            "data": [
+                "Alsace",
+                "Aquitaine",
+                "Auvergne",
+                "Brittany",
+                "Burgundy",
+                "Centre-Val de Loire",
+                "Champagne-Ardenne",
+                "Franche-Comté",
+                "Île-de-France",
+                "Languedoc-Roussillon",
+                "Limousin",
+                "Lorraine",
+                "Lower Normandy",
+                "Midi-Pyrénées",
+                "Nord-Pas-de-Calais",
+                "Pays de la Loire",
+                "Picardy",
+                "Poitou-Charentes",
+                "Provence-Alpes-Côte d'Azur",
+                "Rhône-Alpes",
+                "Upper Normandy"
+            ]
+        },
+        {
+            "country": "uk",
+            "data": [
+                "South East",
+                "London",
+                "North West",
+                "East of England",
+                "West Midlands",
+                "South West",
+                "Yorkshire and the Humber",
+                "East Midlands",
+                "North East"
+            ]
+        },
+        {
+            "country": "canada",
+            "data": [
+                "Ontario",
+                "Quebec",
+                "Nova Scotia",
+                "New Brunswick",
+                "Manitoba",
+                "British Columbia",
+                "Prince Edward Island",
+                "Saskatchewan",
+                "Newfoundland and Labrador"
+            ]
+        },
+        {
+            "country": "japan",
+            "data": [
+                "Hokkaidō",
+                "Honshū",
+                "Tōhoku",
+                "Kantō",
+                "Nanpō",
+                "Chūbu",
+                "Hokuriku",
+                "Kōshin'etsu",
+                "Tōkai",
+                "Kansai",
+                "Chūgoku",
+                "San'in",
+                "San'yō",
+                "Shikoku",
+                "Kyūshū",
+                "Northern Kyūshū",
+                "Southern Kyūshū",
+                "Okinawa"
+            ]
+        }
+    ]
+}

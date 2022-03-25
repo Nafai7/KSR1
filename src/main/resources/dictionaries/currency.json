@@ -1,0 +1,50 @@
+{
+    "dictionary": "currency",
+    "data": [
+        {
+            "country": "west-germany",
+            "data": [
+                "deutschmark",
+                "DEM"
+            ]
+        },
+        {
+            "country": "usa",
+            "data": [
+                "united states dollar",
+                "USD",
+                "dlrs"
+            ]
+        },
+        {
+            "country": "france",
+            "data": [
+                "french franc",
+                "F",
+                "franc"
+            ]
+        },
+        {
+            "country": "uk",
+            "data": [
+                "pound",
+                "GBP"
+            ]
+        },
+        {
+            "country": "canada",
+            "data": [
+                "canadian dollar",
+                "CAD",
+                "canadian dlrs"
+            ]
+        },
+        {
+            "country": "japan",
+            "data": [
+                "yen",
+                "JPY"
+            ]
+        }
+    ]
+}

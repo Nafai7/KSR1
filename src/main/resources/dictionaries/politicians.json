@@ -1,0 +1,100 @@
+{
+    "dictionary": "politicians",
+    "data": [
+        {
+            "country": "west-germany",
+            "data": [
+                "Helmut Kohl",
+                "Johannes Rau",
+                "Martin Bangemann",
+                "Petra Kelly",
+                "Hans-Jochen Vogel",
+                "Willy Brandt",
+                "Alfred Dregger",
+                "Franz Josef Strauss"
+            ]
+        },
+        {
+            "country": "usa",
+            "data": [
+                "Ronald Reagan",
+                "George Wallace",
+                "Bill Clinton",
+                "Jimmy Carter",
+                "Bernie Sanders",
+                "Joe Biden",
+                "George Bush",
+                "Robert Byrd",
+                "Bob Dole",
+                "Jim Wright",
+                "John Stennis",
+                "George J. Mitchell"
+            ]
+        },
+        {
+            "country": "france",
+            "data": [
+                "François Mitterrand",
+                "Jacques Chirac",
+                "Laurent Fabius",
+                "Jean Lecanuet",
+                "Georges Marchais",
+                "Jean-Marie Le Pen",
+                "Raymond Barre",
+                "Charles Pasqua"
+            ]
+        },
+        {
+            "country": "uk",
+            "data": [
+                "Margaret Thatcher",
+                "Neil Kinnock",
+                "David Steel",
+                "David Owen",
+                "Jill Knight",
+                "Nigel Lawson",
+                "Sir Geoffrey Howe",
+                "Douglas Hurd",
+                "Malcolm Rifkind",
+                "Tom King",
+                "George Younger",
+                "Kenneth Baker",
+                "John Biffen",
+                "Quintin Hogg"
+            ]
+        },
+        {
+            "country": "canada",
+            "data": [
+                "Brian Mulroney",
+                "Don Mazankowski",
+                "Michael Wilson",
+                "Joe Clark",
+                "David Crombie",
+                "Perrin Beatty",
+                "Jake Epp",
+                "Ray Hnatyshyn",
+                "John Wise",
+                "Marcel Masse",
+                "John Turner",
+                "Ed Broadbent",
+                "Brian Dickson",
+                "Robert Bourassa"
+            ]
+        },
+        {
+            "country": "japan",
+            "data": [
+                "Takeshita Noboru",
+                "Yasuhiro Nakasone",
+                "Masaharu Gotōda",
+                "Kōichi Yaguchi",
+                "Kenzaburō Hara",
+                "Masaaki Fujita",
+                "Takahiro Yokomichiffg",
+                "Teiichi Aramaki",
+                "Shun'ichi Suzuki"
+            ]
+        }
+    ]
+}

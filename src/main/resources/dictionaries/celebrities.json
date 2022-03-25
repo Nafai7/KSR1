@@ -1,0 +1,93 @@
+{
+    "dictionary": "celebrities",
+    "data": [
+        {
+            "country": "west-germany",
+            "data": [
+                "Mario Adorf",
+                "Dirk Bach",
+                "Burghart Klaußner",
+                "Werner Stocker",
+                "Adriana Altaras",
+                "Katja Flint",
+                "Philip Gröning",
+                "Ute Willing",
+                "Franz Beckenbauer"
+            ]
+        },
+        {
+            "country": "usa",
+            "data": [
+                "Lea Thompson",
+                "Cyndi Lauper",
+                "Tom Cruise",
+                "Jerry Hall",
+                "Joan Collins",
+                "Winona Ryder",
+                "Christina Applegate",
+                "Elton John",
+                "Michael J. Fox",
+                "Axl Rose",
+                "Jennifer Grey",
+                "John Cusack",
+                "Justine Bateman",
+                "Debbie Harry",
+                "Emilio Estevez"
+            ]
+        },
+        {
+            "country": "france",
+            "data": [
+                "Gérard Depardieu",
+                "Patrick Dewaere",
+                "Burt Lancaster",
+                "Philippe Léotard",
+                "Philippe Noiret",
+                "Jean-Jacques Goldman",
+                "Vanessa Paradis",
+                "Karim Benzema"
+            ]
+        },
+        {
+            "country": "uk",
+            "data": [
+                "George Michael",
+                "Kiefer Sutherland",
+                "Olivia Newton-John",
+                "Linda Lursadi",
+                "Samantha Fox",
+                "Simon Le Bon",
+                "Ione Skye",
+                "Naomi Campbell",
+                "Paul Young",
+                "David Bowie",
+                "Rick Astley",
+                "Glynis Barber"
+            ]
+        },
+        {
+            "country": "canada",
+            "data": [
+                "Daniel Lanois",
+                "Gordon Lightfoot",
+                "Margo Timmins",
+                "Neil Young",
+                "Shelley Beattie"
+            ]
+        },
+        {
+            "country": "japan",
+            "data": [
+                "Ryoko Nakano",
+                "Ken Takakura",
+                "Kurihara Komaki",
+                "Beisho Chieko",
+                "Keiko Matsuzaka",
+                "Otake Shinobi",
+                "Yumiko Araki",
+                "Hiroshi Abe",
+                "Tatsuya Nakadai"
+            ]
+        }
+    ]
+}
