@@ -1,6 +1,8 @@
 package pl.ksr1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class StaticVariables {
@@ -50,4 +52,16 @@ public class StaticVariables {
             "currency," +
             "celebrities," +
             "politicians,").split(",")).toList();
+
+    public static List<Float> WEIGHTS = new ArrayList<Float>(
+            List.of((float)0.1,
+                    (float)0.1,
+                    (float)0.1,
+                    (float)0.1,
+                    (float)0.1,
+                    (float)0.1,
+                    (float)0.1,
+                    (float)0.1,
+                    (float)0.1,
+                    (float)0.1));
 }
