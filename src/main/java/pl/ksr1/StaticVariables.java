@@ -39,9 +39,15 @@ public class StaticVariables {
             "canada," +
             "japan,").split(",")).toList();
 
-    public static List<String> DICTIONARIES = Arrays.stream((
+    public static List<String> DICTIONARIES_FILES = Arrays.stream((
             "src/main/resources/dictionaries/regions.json," +
             "src/main/resources/dictionaries/currency.json," +
             "src/main/resources/dictionaries/celebrities.json," +
             "src/main/resources/dictionaries/politicians.json,").split(",")).toList();
+
+    public static List<String> DICTIONARIES = Arrays.stream((
+            "regions," +
+            "currency," +
+            "celebrities," +
+            "politicians,").split(",")).toList();
 }

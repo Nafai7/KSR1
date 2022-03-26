@@ -20,6 +20,7 @@ public class JsonDictionaryReader {
             FileReader reader = new FileReader(files.get(i));
             Object obj = new JSONParser().parse(reader);
             JSONObject json = (JSONObject) obj;
+            String dictionaryName = json.get("dictionary").toString();
             JSONArray data = (JSONArray) json.get("data");
             for (int j = 0; j < data.size(); j++) {
                 JSONObject jsonObject = (JSONObject) data.get(j);
@@ -28,7 +29,7 @@ public class JsonDictionaryReader {
                 for (int k = 0; k < jsonArray.size(); k++) {
                     words.add(jsonArray.get(k).toString());
                 }
-                result.add(new Dictionary(jsonObject.get("country").toString(), words));
+                result.add(new Dictionary(dictionaryName, jsonObject.get("country").toString(), words));
             }
         }
 
