@@ -1,6 +1,7 @@
 package pl.ksr1.datastructures;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ import static pl.ksr1.StaticVariables.PLACES;
 public class FeatureVector {
 
     @Getter private int articleID;
-    @Getter private int textLength;
+    @Getter private float textLength;
     @Getter private String firstRegion;
     @Getter private String mostCommonRegion;
     @Getter private String mostOccurringPlaceInRegions;
@@ -20,9 +21,10 @@ public class FeatureVector {
     @Getter private String firstCelebrity;
     @Getter private String firstPolitician;
     @Getter private float percentageOfMostOccurringPlaceInPoliticians;
+    @Getter @Setter private String place;
 
     private FeatureVector(int articleID,
-                          int textLength,
+                          float textLength,
                           String firstRegion,
                           String mostCommonRegion,
                           String mostOccurringPlaceInRegions,
@@ -43,10 +45,11 @@ public class FeatureVector {
         this.firstCelebrity = firstCelebrity;
         this.firstPolitician = firstPolitician;
         this.percentageOfMostOccurringPlaceInPoliticians = percentageOfMostOccurringPlaceInPoliticians;
+        this.place = "";
     }
 
     public static FeatureVector extractFeatureVector(Article article, List<Dictionary> dictionaries) {
-        int length = article.getText().size();
+        float length = article.getText().size()/(float)100.0;
 
         //####### REGIONS
         boolean flag = false;
@@ -109,7 +112,7 @@ public class FeatureVector {
                 region3 = entry.getKey();
             }
         }
-        float region4 = Math.round((((float)maxValue/length) * 100) * 100.0) / (float)100; //kocham jave
+        float region4 = Math.round((((float)maxValue/article.getText().size()) * 100) * 100.0) / (float)100; //kocham jave
 
         //####### CURRENCY
         flag = false;
@@ -226,7 +229,7 @@ public class FeatureVector {
                 maxValue = entry.getValue();
             }
         }
-        float politician2 = Math.round((((float)maxValue/length) * 100) * 100.0) / (float)100; //kocham jave
+        float politician2 = Math.round((((float)maxValue/article.getText().size()) * 100) * 100.0) / (float)100; //kocham jave
 
         return new FeatureVector(article.getID(), length, region1, region2, region3, region4, currency1, currency2, celebrity1, politician1, politician2);
     }

@@ -53,15 +53,19 @@ public class StaticVariables {
             "celebrities," +
             "politicians,").split(",")).toList();
 
-    public static List<Float> WEIGHTS = new ArrayList<Float>(
-            List.of((float)0.1,
-                    (float)0.1,
-                    (float)0.1,
-                    (float)0.1,
-                    (float)0.1,
-                    (float)0.1,
-                    (float)0.1,
-                    (float)0.1,
-                    (float)0.1,
-                    (float)0.1));
+    public static final String EUCLIDEAN = "euclidean";
+    public static final String STREET = "street";
+    public static final String CHEBYSHEV = "chebyshev";
+
+//    public static List<Float> WEIGHTS = new ArrayList<Float>(
+//            List.of((float)0.1,
+//                    (float)0.1,
+//                    (float)0.1,
+//                    (float)0.1,
+//                    (float)0.1,
+//                    (float)0.1,
+//                    (float)0.1,
+//                    (float)0.1,
+//                    (float)0.1,
+//                    (float)0.1));
 }

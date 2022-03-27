@@ -12,66 +12,38 @@ import java.util.stream.Collectors;
 import static pl.ksr1.StaticVariables.PLACES;
 
 public class KNN {
-    public static Map<String, Float> classify(Article article, FeatureVector featureVector, List<Dictionary> dictionaries, List<Float> weights) {
-        Map<String, Float> result = new HashMap<>();
-        for (int i = 0; i < PLACES.size(); i++) {
-            result.put(PLACES.get(i), (float)0.0);
+    public static String classify(FeatureVector featureVector, List<FeatureVector> trainingVectors, String metric, int k) {
+        Map<FeatureVector, Float> distances = new HashMap<>();
+        System.out.print("\n");
+        for (int i = 0; i < trainingVectors.size(); i++) {
+            System.out.print("\n");
+            System.out.print(Metrics.calculateDistance(featureVector, trainingVectors.get(i), metric));
+            distances.put(trainingVectors.get(i), Metrics.calculateDistance(featureVector, trainingVectors.get(i), metric));
         }
+        Map<FeatureVector, Float> sortedDistances = new HashMap<>();
+        distances.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEachOrdered(x -> sortedDistances.put(x.getKey(), x.getValue()));
 
-        //nie wiemy nic o autorze więc nie mamy jak obliczyć czegoś z tej długości tekstu
-
-        //######### REGIONS
-        for (int i = 0; i < PLACES.size(); i++) {
-            Dictionary dictionary = dictionaries.get(i);
-            List<String> words = dictionary.getWords().stream().map(String::toLowerCase).collect(Collectors.toList());
-            if (words.contains(featureVector.getFirstRegion().toLowerCase())) {
-                result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(1));
-            }
-            if (words.contains(featureVector.getMostCommonRegion().toLowerCase())) {
-                result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(2));
-            }
-            if (dictionary.getCountry().equals(featureVector.getMostOccurringPlaceInRegions())) {
-                result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(3));
-                if (featureVector.getPercentageOfMostOccurringPlaceInRegions() > 10) {
-                    result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(4));
-                } else {
-                    result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + (1 * weights.get(4) * (featureVector.getPercentageOfMostOccurringPlaceInRegions()/10)));
-                }
-            }
-        }
-
-        //######### CURRENCY
-        for (int i = PLACES.size(); i < PLACES.size() * 2; i++) {
-            Dictionary dictionary = dictionaries.get(i);
-            List<String> words = dictionary.getWords().stream().map(String::toLowerCase).collect(Collectors.toList());
-            if (words.contains(featureVector.getFirstCurrency().toLowerCase())) {
-                result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(5));
-            }
-            if (words.contains(featureVector.getMostCommonCurrency().toLowerCase())) {
-                result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(6));
+        System.out.print("\n");
+        System.out.print(k);
+        System.out.print("\n");
+        System.out.print(sortedDistances.entrySet().stream().toList());
+        Map<String, Integer> places = new HashMap<>();
+        for (int i = 0; i < k; i++) {
+            System.out.print("\n");
+            System.out.print(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace());
+            if (places.containsKey(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace())) {
+                places.put(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace(), places.get(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace()) + 1);
+            } else {
+                places.put(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace(), 1);
             }
         }
 
-        //######### CELEBRITIES
-        for (int i = PLACES.size() * 2; i < PLACES.size() * 3; i++) {
-            Dictionary dictionary = dictionaries.get(i);
-            List<String> words = dictionary.getWords().stream().map(String::toLowerCase).collect(Collectors.toList());
-            if (words.contains(featureVector.getFirstCelebrity().toLowerCase())) {
-                result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(7));
-            }
-        }
-
-        //######### POLITICIANS
-        for (int i = PLACES.size() * 3; i < PLACES.size() * 4; i++) {
-            Dictionary dictionary = dictionaries.get(i);
-            List<String> words = dictionary.getWords().stream().map(String::toLowerCase).collect(Collectors.toList());
-            if (words.contains(featureVector.getFirstPolitician().toLowerCase())) {
-                result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(8));
-                if (featureVector.getPercentageOfMostOccurringPlaceInPoliticians() > 10) {
-                    result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + 1 * weights.get(9));
-                } else {
-                    result.put(dictionary.getCountry(), result.get(dictionary.getCountry()) + (1 * weights.get(9) * (featureVector.getPercentageOfMostOccurringPlaceInRegions()/10)));
-                }
+        int maxValue = 0;
+        String result = "";
+        for (Map.Entry<String, Integer> entry : places.entrySet()) {
+            if (maxValue < entry.getValue()) {
+                maxValue = entry.getValue();
+                result = entry.getKey();
             }
         }
 
