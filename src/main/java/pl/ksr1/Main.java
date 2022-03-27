@@ -8,6 +8,7 @@ import pl.ksr1.filereaders.JsonDictionaryReader;
 import pl.ksr1.filereaders.SgmlArticleReader;
 import pl.ksr1.stemmer.ListStemmer;
 
+import java.io.FileWriter;
 import java.util.*;
 
 import static pl.ksr1.StaticVariables.*;
@@ -48,6 +49,7 @@ public class Main {
             }
             List<String> proportions;
             int training = 0, testing = 0;
+            in.nextLine();
             while (!((training + testing) == 100)) {
                 System.out.print("Enter training and testing proportions like \"50/50\": ");
                 proportions = Arrays.stream(in.nextLine().split("/")).toList();
@@ -71,42 +73,42 @@ public class Main {
             // calculate vectors (training vectors know their place
             List<FeatureVector> trainingVectors = new ArrayList<FeatureVector>();
             List<FeatureVector> featureVectors = new ArrayList<FeatureVector>();
-            System.out.print("\nUCZĄCE:\n");
+//            System.out.print("\nUCZĄCE:\n");
             for (int i = 0; i < trainingArticles.size(); i++) {
                 trainingVectors.add(FeatureVector.extractFeatureVector(trainingArticles.get(i), dictionaries));
                 trainingVectors.get(i).setPlace(trainingArticles.get(i).getPlace());
-                System.out.print("\n##############################\n");
-                System.out.print(trainingVectors.get(i).getTextLength() + ", " +
-                        trainingVectors.get(i).getFirstRegion() + ", " +
-                        trainingVectors.get(i).getMostCommonRegion() + ", " +
-                        trainingVectors.get(i).getMostOccurringPlaceInRegions() + ", " +
-                        trainingVectors.get(i).getPercentageOfMostOccurringPlaceInRegions() + ", " +
-                        trainingVectors.get(i).getFirstCurrency() + ", " +
-                        trainingVectors.get(i).getMostCommonCurrency() + ", " +
-                        trainingVectors.get(i).getFirstCelebrity() + ", " +
-                        trainingVectors.get(i).getFirstPolitician() + ", " +
-                        trainingVectors.get(i).getPercentageOfMostOccurringPlaceInPoliticians() + ", " +
-                        trainingVectors.get(i).getPlace());
+//                System.out.print("\n##############################\n");
+//                System.out.print(trainingVectors.get(i).getTextLength() + ", " +
+//                        trainingVectors.get(i).getFirstRegion() + ", " +
+//                        trainingVectors.get(i).getMostCommonRegion() + ", " +
+//                        trainingVectors.get(i).getMostOccurringPlaceInRegions() + ", " +
+//                        trainingVectors.get(i).getPercentageOfMostOccurringPlaceInRegions() + ", " +
+//                        trainingVectors.get(i).getFirstCurrency() + ", " +
+//                        trainingVectors.get(i).getMostCommonCurrency() + ", " +
+//                        trainingVectors.get(i).getFirstCelebrity() + ", " +
+//                        trainingVectors.get(i).getFirstPolitician() + ", " +
+//                        trainingVectors.get(i).getPercentageOfMostOccurringPlaceInPoliticians() + ", " +
+//                        trainingVectors.get(i).getPlace());
             }
 
-            System.out.print("\nTESTOWE:\n");
+//            System.out.print("\nTESTOWE:\n");
             for (int i = 0; i < articles.size(); i++) {
                 featureVectors.add(FeatureVector.extractFeatureVector(articles.get(i), dictionaries));
-                System.out.print("\n##############################\n");
-                System.out.print(featureVectors.get(i).getTextLength() + ", " +
-                        featureVectors.get(i).getFirstRegion() + ", " +
-                        featureVectors.get(i).getMostCommonRegion() + ", " +
-                        featureVectors.get(i).getMostOccurringPlaceInRegions() + ", " +
-                        featureVectors.get(i).getPercentageOfMostOccurringPlaceInRegions() + ", " +
-                        featureVectors.get(i).getFirstCurrency() + ", " +
-                        featureVectors.get(i).getMostCommonCurrency() + ", " +
-                        featureVectors.get(i).getFirstCelebrity() + ", " +
-                        featureVectors.get(i).getFirstPolitician() + ", " +
-                        featureVectors.get(i).getPercentageOfMostOccurringPlaceInPoliticians());
+//                System.out.print("\n##############################\n");
+//                System.out.print(featureVectors.get(i).getTextLength() + ", " +
+//                        featureVectors.get(i).getFirstRegion() + ", " +
+//                        featureVectors.get(i).getMostCommonRegion() + ", " +
+//                        featureVectors.get(i).getMostOccurringPlaceInRegions() + ", " +
+//                        featureVectors.get(i).getPercentageOfMostOccurringPlaceInRegions() + ", " +
+//                        featureVectors.get(i).getFirstCurrency() + ", " +
+//                        featureVectors.get(i).getMostCommonCurrency() + ", " +
+//                        featureVectors.get(i).getFirstCelebrity() + ", " +
+//                        featureVectors.get(i).getFirstPolitician() + ", " +
+//                        featureVectors.get(i).getPercentageOfMostOccurringPlaceInPoliticians());
             }
 
             // classify
-            System.out.print("\nKlasyfikacja:\n");
+//            System.out.print("\nKlasyfikacja:\n");
             List<Map<String, Integer>> placesStats = new ArrayList<>();
             for (int i = 0; i < PLACES.size(); i++) {
                 placesStats.add(new HashMap<>());
@@ -115,9 +117,9 @@ public class Main {
                 for (int j = 0; j < placesStats.size(); j++) {
                     if (PLACES.get(j).equals(articles.get(i).getPlace())) {
                         String classifiedPlace = KNN.classify(featureVectors.get(i), trainingVectors, metric, k);
-                        System.out.print("\n");
-                        System.out.print(classifiedPlace);
-                        System.out.print("\n");
+//                        System.out.print("\n");
+//                        System.out.print(classifiedPlace);
+//                        System.out.print("\n");
                         if (placesStats.get(j).containsKey(classifiedPlace)) {
                             placesStats.get(j).put(classifiedPlace, placesStats.get(j).get(classifiedPlace) + 1);
                         } else {
@@ -145,14 +147,28 @@ public class Main {
 //                    }
 //                }
 //            }
-
-            System.out.print("\nSTATY:\n");
-            for (int i = 0; i < placesStats.size(); i++) {
-                System.out.print("\n###############################\n");
-                System.out.print(PLACES.get(i));
-                System.out.print("\n");
-                System.out.print(placesStats.get(i));
+            Map<String, Integer> actualPlaces = new HashMap<>();
+            for (int i = 0; i < articles.size(); i++) {
+                if (actualPlaces.containsKey(articles.get(i).getPlace())) {
+                    actualPlaces.put(articles.get(i).getPlace(), actualPlaces.get(articles.get(i).getPlace()) + 1);
+                } else {
+                    actualPlaces.put(articles.get(i).getPlace(), 1);
+                }
             }
+            StringBuilder output = new StringBuilder();
+            System.out.print("\n");
+            output.append("STATYSTYKI:\n");
+            for (int i = 0; i < placesStats.size(); i++) {
+                output.append("\n###############################\n");
+                output.append(PLACES.get(i) + " " + actualPlaces.get(PLACES.get(i)));
+                output.append("\n");
+                output.append(placesStats.get(i));
+            }
+            System.out.print(output.toString());
+
+            FileWriter myWriter = new FileWriter("Results_" + metric + "_" + k + "_" + training + "_" + testing + ".txt");
+            myWriter.write(output.toString());
+            myWriter.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();

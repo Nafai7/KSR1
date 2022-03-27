@@ -110,8 +110,8 @@ public class Metrics {
             }
 
             return (float)(result/trigrams1.size());
-        } else if (text1.length() == 0 && text2.length() == 0) {
-            return (float) 1.0;
+//        } else if (text1.length() == 0 && text2.length() == 0) {
+//            return (float) 1.0;
         } else {
             return (float) 0.0;
         }

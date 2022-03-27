@@ -49,7 +49,7 @@ public class FeatureVector {
     }
 
     public static FeatureVector extractFeatureVector(Article article, List<Dictionary> dictionaries) {
-        float length = article.getText().size()/(float)100.0;
+        float length = article.getText().size()/(float)1000.0;
 
         //####### REGIONS
         boolean flag = false;
