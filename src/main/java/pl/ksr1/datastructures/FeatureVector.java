@@ -23,6 +23,8 @@ public class FeatureVector {
     @Getter private float percentageOfMostOccurringPlaceInPoliticians;
     @Getter @Setter private String place;
 
+    @Getter private List<Boolean> isUsed;
+
     private FeatureVector(int articleID,
                           float textLength,
                           String firstRegion,
@@ -33,7 +35,8 @@ public class FeatureVector {
                           String mostCommonCurrency,
                           String firstCelebrity,
                           String firstPolitician,
-                          float percentageOfMostOccurringPlaceInPoliticians) {
+                          float percentageOfMostOccurringPlaceInPoliticians,
+                          List<Boolean> isUsed) {
         this.articleID = articleID;
         this.textLength = textLength;
         this.firstRegion = firstRegion;
@@ -46,9 +49,10 @@ public class FeatureVector {
         this.firstPolitician = firstPolitician;
         this.percentageOfMostOccurringPlaceInPoliticians = percentageOfMostOccurringPlaceInPoliticians;
         this.place = "";
+        this.isUsed = isUsed;
     }
 
-    public static FeatureVector extractFeatureVector(Article article, List<Dictionary> dictionaries) {
+    public static FeatureVector extractFeatureVector(Article article, List<Dictionary> dictionaries, List<Boolean> uses) {
         float length = article.getText().size()/(float)1000.0;
 
         //####### REGIONS
@@ -231,7 +235,7 @@ public class FeatureVector {
         }
         float politician2 = Math.round((((float)maxValue/article.getText().size()) * 100) * 100.0) / (float)100; //kocham jave
 
-        return new FeatureVector(article.getID(), length, region1, region2, region3, region4, currency1, currency2, celebrity1, politician1, politician2);
+        return new FeatureVector(article.getID(), length, region1, region2, region3, region4, currency1, currency2, celebrity1, politician1, politician2, uses);
     }
 
 }

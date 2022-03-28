@@ -16,7 +16,7 @@ public class KNN {
         for (int i = 0; i < trainingVectors.size(); i++) {
 //            System.out.print("\n");
 //            System.out.print(Metrics.calculateDistance(featureVector, trainingVectors.get(i), metric));
-            distances.put(trainingVectors.get(i), Metrics.calculateDistance(featureVector, trainingVectors.get(i), metric));
+            distances.put(trainingVectors.get(i), Metrics.calculateDistance(featureVector, trainingVectors.get(i), metric, featureVector.getIsUsed()));
         }
         Map<FeatureVector, Float> sortedDistances = new LinkedHashMap<>();
         List list = new LinkedList(distances.entrySet());

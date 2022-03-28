@@ -57,6 +57,19 @@ public class StaticVariables {
     public static final String STREET = "street";
     public static final String CHEBYSHEV = "chebyshev";
 
+    public static List<String> FEATURES = Arrays.stream((
+            "text Length: ," +
+            "first Region: ," +
+            "most Common Region: ," +
+            "most Occurring Place In Regions: ," +
+            "percentage Of Most Occurring Place In Regions: ," +
+            "first Currency: ," +
+            "most Common Currency: ," +
+            "first Celebrity: ," +
+            "first Politician: ," +
+            "percentage Of Most Occurring Place In Politicians: ,"
+            ).split(",")).toList();
+
 //    public static List<Float> WEIGHTS = new ArrayList<Float>(
 //            List.of((float)0.1,
 //                    (float)0.1,

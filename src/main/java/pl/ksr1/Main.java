@@ -58,7 +58,19 @@ public class Main {
                     testing = Integer.valueOf(proportions.get(1));
                 }
             }
-
+            List<Boolean> isUsed = new ArrayList<>();
+            System.out.println("Choose features(t/n);");
+            String tmp;
+            for (int i = 0; i < 10; i++) {
+                System.out.print(FEATURES.get(i));
+                tmp = in.next();
+                if (tmp.equals("t")) {
+                    isUsed.add(true);
+                } else {
+                    isUsed.add(false);
+                }
+            }
+            System.out.println(isUsed);
             // divide into training and test lists
             int trainingSize = (articles.size() * training) / 100;
             Random random = new Random(69);
@@ -75,7 +87,7 @@ public class Main {
             List<FeatureVector> featureVectors = new ArrayList<FeatureVector>();
 //            System.out.print("\nUCZĄCE:\n");
             for (int i = 0; i < trainingArticles.size(); i++) {
-                trainingVectors.add(FeatureVector.extractFeatureVector(trainingArticles.get(i), dictionaries));
+                trainingVectors.add(FeatureVector.extractFeatureVector(trainingArticles.get(i), dictionaries, isUsed));
                 trainingVectors.get(i).setPlace(trainingArticles.get(i).getPlace());
 //                System.out.print("\n##############################\n");
 //                System.out.print(trainingVectors.get(i).getTextLength() + ", " +
@@ -93,7 +105,7 @@ public class Main {
 
 //            System.out.print("\nTESTOWE:\n");
             for (int i = 0; i < articles.size(); i++) {
-                featureVectors.add(FeatureVector.extractFeatureVector(articles.get(i), dictionaries));
+                featureVectors.add(FeatureVector.extractFeatureVector(articles.get(i), dictionaries, isUsed));
 //                System.out.print("\n##############################\n");
 //                System.out.print(featureVectors.get(i).getTextLength() + ", " +
 //                        featureVectors.get(i).getFirstRegion() + ", " +
