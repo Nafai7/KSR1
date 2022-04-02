@@ -38,30 +38,79 @@ public class ClassificationMeasurements {
             truesAndFalses.get(i).add(falsePositives);
             truesAndFalses.get(i).add(falseNegatives);
 //            System.out.print("\n");
-//            System.out.print(trueAndFalsePositives.get(i));
+//            System.out.print(truesAndFalses.get(i));
         }
 
-        for (int i = 0; i < PLACES.size(); i++) {
-//            result.add();
-            result.add(precision(truesAndFalses, allPlaces));
-        }
-
+        result.add(accuracy(truesAndFalses, allPlaces));
+        result.add(precision(truesAndFalses, allPlaces));
+        result.add(recall(truesAndFalses, allPlaces));
+        result.add(f1(result.get(result.size() - 1), result.get(result.size() - 2)));
 
         return result;
     }
 
-    private static float precision(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
+    private static float accuracy(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
         float result = 0;
-        int i = 0;
         int sum = 0;
-        for (Map.Entry<String, Integer> entry : allPlaces.entrySet()) {
-
-            result += (truesAndFalses.get(i).get(0) * entry.getValue()) / (truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(1));
-            sum += entry.getValue();
-            i++;
+        for (int i = 0; i < PLACES.size(); i++) {
+            for (Map.Entry<String, Integer> entry : allPlaces.entrySet()) {
+                if (entry.getKey().equals(PLACES.get(i))) {
+                    result += (float) truesAndFalses.get(i).get(0);
+                    sum += entry.getValue();
+                }
+            }
         }
 
-        return result/sum;
+        return result / sum;
     }
 
+    private static float precision(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
+        float result = 0;
+        int sum = 0;
+        for (int i = 0; i < PLACES.size(); i++) {
+            for (Map.Entry<String, Integer> entry : allPlaces.entrySet()) {
+                if (entry.getKey().equals(PLACES.get(i))) {
+//                    System.out.print("\n");
+//                    System.out.print(entry.getKey());
+//                    System.out.print(truesAndFalses.get(i));
+                    if ((truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(1)) != 0) {
+                        result += (float) (truesAndFalses.get(i).get(0) * entry.getValue()) / (truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(1));
+//                        System.out.print(result);
+                    } else {
+                        result += 0;
+                    }
+                    sum += entry.getValue();
+                }
+            }
+        }
+
+        return result / sum;
+    }
+
+    private static float recall(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
+        float result = 0;
+        int sum = 0;
+        for (int i = 0; i < PLACES.size(); i++) {
+            for (Map.Entry<String, Integer> entry : allPlaces.entrySet()) {
+                if (entry.getKey().equals(PLACES.get(i))) {
+//                    System.out.print("\n");
+//                    System.out.print(entry.getKey());
+//                    System.out.print(truesAndFalses.get(i));
+                    if ((truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(2)) != 0) {
+                        result += (float) (truesAndFalses.get(i).get(0) * entry.getValue()) / (truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(2));
+//                        System.out.print(result);
+                    } else {
+                        result += 0;
+                    }
+                    sum += entry.getValue();
+                }
+            }
+        }
+
+        return result / sum;
+    }
+
+    private static float f1(float precision, float recall) {
+        return (2 * precision * recall) / (precision + recall);
+    }
 }

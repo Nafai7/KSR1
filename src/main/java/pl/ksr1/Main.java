@@ -6,6 +6,7 @@ import pl.ksr1.datastructures.Dictionary;
 import pl.ksr1.datastructures.FeatureVector;
 import pl.ksr1.filereaders.JsonReader;
 import pl.ksr1.filereaders.SgmArticleReader;
+import pl.ksr1.measurements.ClassificationMeasurements;
 import pl.ksr1.stemmer.ListStemmer;
 
 import java.util.*;
@@ -169,19 +170,21 @@ public class Main {
 //                    }
 //                }
 //            }
+
             Map<String, Integer> actualPlaces = new HashMap<>();
-            for (int i = 0; i < articles.size(); i++) {
-                if (actualPlaces.containsKey(articles.get(i).getPlace())) {
-                    actualPlaces.put(articles.get(i).getPlace(), actualPlaces.get(articles.get(i).getPlace()) + 1);
-                } else {
-                    actualPlaces.put(articles.get(i).getPlace(), 1);
-                }
+            for (int i = 0; i < PLACES.size(); i++) {
+                actualPlaces.put(PLACES.get(i), 0);
             }
-//            System.out.print("\n");
-//            System.out.print("Miary:\n");
-//            List<Float> measurments = ClassificationMeasurements.calculateClassifcationMeasurements(placesStats, actualPlaces);
-//
-//            System.out.print(measurments);
+            for (int i = 0; i < articles.size(); i++) {
+                actualPlaces.put(articles.get(i).getPlace(), actualPlaces.get(articles.get(i).getPlace()) + 1);
+            }
+
+            System.out.print("\n");
+            System.out.print("Miary:\n");
+            List<Float> measurments = ClassificationMeasurements.calculateClassifcationMeasurements(placesStats, actualPlaces);
+
+            System.out.print("\n");
+            System.out.print(measurments);
 
             StringBuilder output = new StringBuilder();
             System.out.print("\n");
