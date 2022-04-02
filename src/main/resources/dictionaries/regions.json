@@ -4,6 +4,7 @@
         {
             "country": "west-germany",
             "data": [
+                "Germany",
                 "Baden-Württemberg",
                 "Bavaria",
                 "Bremen",
@@ -19,6 +20,8 @@
         {
             "country": "usa",
             "data": [
+                "USA",
+                "America",
                 "Alabama",
                 "Alaska",
                 "Arizona",
@@ -74,6 +77,7 @@
         {
             "country": "france",
             "data": [
+                "France",
                 "Alsace",
                 "Aquitaine",
                 "Auvergne",
@@ -100,6 +104,9 @@
         {
             "country": "uk",
             "data": [
+                "England",
+                "United Kingdom",
+                "Great Britain",
                 "South East",
                 "London",
                 "North West",
@@ -114,6 +121,7 @@
         {
             "country": "canada",
             "data": [
+                "Canada",
                 "Ontario",
                 "Quebec",
                 "Nova Scotia",
@@ -128,6 +136,7 @@
         {
             "country": "japan",
             "data": [
+                "Japan",
                 "Hokkaidō",
                 "Honshū",
                 "Tōhoku",

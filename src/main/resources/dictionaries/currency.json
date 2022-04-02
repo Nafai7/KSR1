@@ -5,7 +5,8 @@
             "country": "west-germany",
             "data": [
                 "deutschmark",
-                "DEM"
+                "DEM",
+                "mark"
             ]
         },
         {
@@ -28,7 +29,8 @@
             "country": "uk",
             "data": [
                 "pound",
-                "GBP"
+                "GBP",
+                "STG"
             ]
         },
         {

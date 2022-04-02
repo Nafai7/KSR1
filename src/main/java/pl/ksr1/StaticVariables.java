@@ -53,6 +53,8 @@ public class StaticVariables {
             "celebrities," +
             "politicians,").split(",")).toList();
 
+    public static final String STOP_WORDS_FILE = "src/main/resources/stop_words.json";
+
     public static final String EUCLIDEAN = "euclidean";
     public static final String STREET = "street";
     public static final String CHEBYSHEV = "chebyshev";

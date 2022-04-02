@@ -79,7 +79,7 @@ public class FeatureVector {
                         i += region.size() - 1;
                         String word = dictionaries.get(j).getWords().get(k);
                         if (!flag) {
-                            region1 = word;
+                            region1 = dictionaries.get(j).getCountry();
                             flag = true;
                         }
                         if (regionMap.containsKey(word)) {
@@ -105,6 +105,12 @@ public class FeatureVector {
             if (maxValue < entry.getValue()) {
                 maxValue = entry.getValue();
                 region2 = entry.getKey();
+            }
+        }
+        for (int i = 0; i < PLACES.size(); i++) {
+            if (dictionaries.get(i).getWords().contains(region2)) {
+                region2 = dictionaries.get(i).getCountry();
+                break;
             }
         }
 
@@ -141,7 +147,7 @@ public class FeatureVector {
                         i += currency.size() - 1;
                         String word = dictionaries.get(j).getWords().get(k);
                         if (!flag) {
-                            currency1 = word;
+                            currency1 = dictionaries.get(j).getCountry();
                             flag = true;
                         }
                         if (currencyMap.containsKey(word)) {
@@ -160,6 +166,12 @@ public class FeatureVector {
             if (maxValue < entry.getValue()) {
                 maxValue = entry.getValue();
                 currency2 = entry.getKey();
+            }
+        }
+        for (int i = PLACES.size(); i < PLACES.size() * 2; i++) {
+            if (dictionaries.get(i).getWords().contains(currency2)) {
+                currency2 = dictionaries.get(i).getCountry();
+                break;
             }
         }
 
@@ -183,7 +195,7 @@ public class FeatureVector {
 
                     if (!wordFlag) {
                         String word = dictionaries.get(j).getWords().get(k);
-                        celebrity1 = word;
+                        celebrity1 = dictionaries.get(j).getCountry();
                         break celebrityLoop;
                     }
                 }
@@ -212,7 +224,7 @@ public class FeatureVector {
                     if (!wordFlag) {
                         String word = dictionaries.get(j).getWords().get(k);
                         if (!flag) {
-                            politician1 = word;
+                            politician1 = dictionaries.get(j).getCountry();
                             flag = true;
                         }
 

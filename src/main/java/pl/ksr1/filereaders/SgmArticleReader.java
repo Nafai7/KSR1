@@ -11,7 +11,7 @@ import java.util.List;
 
 import static pl.ksr1.StaticVariables.*;
 
-public class SgmlArticleReader {
+public class SgmArticleReader {
 
     public static int ID = 0;
 
@@ -25,7 +25,7 @@ public class SgmlArticleReader {
                         List<Element> places = article.getElementsByTag("PLACES").first().getElementsByTag("d").stream().toList();
                         if (places.size() == 1 && PLACES.contains(places.get(0).text())) {
                             Element lastChild = article.child(article.childrenSize() - 1);
-                            result.add(new Article(places.get(0).text(), Arrays.stream(lastChild.text().substring(lastChild.text().indexOf(" - ") + 3).split(" ")).toList(), ID));
+                            result.add(new Article(places.get(0).text(), new ArrayList<>(Arrays.stream(lastChild.text().substring(lastChild.text().indexOf(" - ") + 3).split(" ")).toList()), ID));
                             ID++;
                         }
                     });

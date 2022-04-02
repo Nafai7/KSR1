@@ -6,13 +6,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pl.ksr1.datastructures.Dictionary;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonDictionaryReader {
+public class JsonReader {
 
     public static List<Dictionary> readMultipleDictionaries(List<String> files) throws IOException, ParseException {
         List<Dictionary> result = new ArrayList<Dictionary>();
@@ -31,6 +30,18 @@ public class JsonDictionaryReader {
                 }
                 result.add(new Dictionary(dictionaryName, jsonObject.get("country").toString(), words));
             }
+        }
+
+        return result;
+    }
+
+    public static List<String> readStopWords(String file) throws IOException, ParseException {
+        List<String> result = new ArrayList<>();
+        FileReader reader = new FileReader(file);
+        Object obj = new JSONParser().parse(reader);
+        JSONArray jsonArray = (JSONArray) obj;
+        for (int i = 0; i < jsonArray.size(); i++) {
+            result.add(jsonArray.get(i).toString());
         }
 
         return result;

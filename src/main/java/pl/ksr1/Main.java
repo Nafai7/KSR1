@@ -4,12 +4,10 @@ import pl.ksr1.algorithms.KNN;
 import pl.ksr1.datastructures.Article;
 import pl.ksr1.datastructures.Dictionary;
 import pl.ksr1.datastructures.FeatureVector;
-import pl.ksr1.filereaders.JsonDictionaryReader;
-import pl.ksr1.filereaders.SgmlArticleReader;
-import pl.ksr1.measurements.ClassificationMeasurements;
+import pl.ksr1.filereaders.JsonReader;
+import pl.ksr1.filereaders.SgmArticleReader;
 import pl.ksr1.stemmer.ListStemmer;
 
-import java.io.FileWriter;
 import java.util.*;
 
 import static pl.ksr1.StaticVariables.*;
@@ -19,9 +17,20 @@ public class Main {
     public static void main(String[] args) {
         try {
             // reading necessary stuff
-            List<Dictionary> dictionaries = JsonDictionaryReader.readMultipleDictionaries(DICTIONARIES_FILES);
-            List<Article> articles = SgmlArticleReader.readMultipleFiles(TEST_FILES);
-//            ListStemmer.stemArticleList(articles);
+            List<Dictionary> dictionaries = JsonReader.readMultipleDictionaries(DICTIONARIES_FILES);
+            List<Article> articles = SgmArticleReader.readMultipleFiles(ARTICLE_FILES);
+            List<String> stopWords = JsonReader.readStopWords(STOP_WORDS_FILE);
+
+            for (int i = 0; i < articles.size(); i++) {
+                for (int j = 0; j < articles.get(i).getText().size(); j++) {
+                    if (stopWords.contains(articles.get(i).getText().get(j))) {
+                        articles.get(i).getText().remove(j);
+                    }
+                }
+            }
+
+            ListStemmer.stemArticleList(articles);
+            ListStemmer.stemDictionaryList(dictionaries);
 
             // getting user input
             Scanner in = new Scanner(System.in);
