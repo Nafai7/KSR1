@@ -6,6 +6,7 @@ import pl.ksr1.datastructures.Dictionary;
 import pl.ksr1.datastructures.FeatureVector;
 import pl.ksr1.filereaders.JsonDictionaryReader;
 import pl.ksr1.filereaders.SgmlArticleReader;
+import pl.ksr1.measurements.ClassificationMeasurements;
 import pl.ksr1.stemmer.ListStemmer;
 
 import java.io.FileWriter;
@@ -167,6 +168,12 @@ public class Main {
                     actualPlaces.put(articles.get(i).getPlace(), 1);
                 }
             }
+//            System.out.print("\n");
+//            System.out.print("Miary:\n");
+//            List<Float> measurments = ClassificationMeasurements.calculateClassifcationMeasurements(placesStats, actualPlaces);
+//
+//            System.out.print(measurments);
+
             StringBuilder output = new StringBuilder();
             System.out.print("\n");
             output.append("STATYSTYKI:\n");
@@ -178,9 +185,9 @@ public class Main {
             }
             System.out.print(output.toString());
 
-            FileWriter myWriter = new FileWriter("Results_" + metric + "_" + k + "_" + training + "_" + testing + ".txt");
-            myWriter.write(output.toString());
-            myWriter.close();
+//            FileWriter myWriter = new FileWriter("Results_" + metric + "_" + k + "_" + training + "_" + testing + ".txt");
+//            myWriter.write(output.toString());
+//            myWriter.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
