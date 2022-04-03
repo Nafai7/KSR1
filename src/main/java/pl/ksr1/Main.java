@@ -233,9 +233,9 @@ public class Main {
                     output.append(entry.getKey() + " " + entry.getValue() + ",");
                 }
                 output.append("]\n");
-                output.append("Precision" + measurments.get(4 + i) + "\n");
-                output.append("Recall" + measurments.get(5 + i) + "\n");
-                output.append("F1" + measurments.get(6 + i) + "\n");
+                output.append("Precision" + measurments.get(4 + i * 3) + "\n");
+                output.append("Recall" + measurments.get(5 + i * 3) + "\n");
+                output.append("F1" + measurments.get(6 + i * 3) + "\n");
             }
             System.out.print(output.toString());
 
