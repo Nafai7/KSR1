@@ -8,44 +8,18 @@ import static pl.ksr1.StaticVariables.PLACES;
 
 public class ClassificationMeasurements {
 
-    public static List<Float> calculateClassifcationMeasurements(List<Map<String, Integer>> classifiedPlaces, Map<String, Integer> allPlaces) {
+    public static List<Float> calculateClassifcationMeasurements(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
         List<Float> result = new ArrayList<Float>();
-        List<List<Integer>> truesAndFalses = new ArrayList<List<Integer>>(); // true, falsepositive, falsenegative
-        for (int i = 0; i < PLACES.size(); i++) {
-            truesAndFalses.add(new ArrayList<Integer>());
-            int trues = 0;
-            int falsePositives = 0;
-            int falseNegatives = 0;
-
-            for (int j = 0; j < classifiedPlaces.size(); j++) {
-                if (i != j) {
-                    for (Map.Entry<String, Integer> entry : classifiedPlaces.get(j).entrySet()) {
-                        if (entry.getKey().equals(PLACES.get(i))) {
-                            falsePositives += entry.getValue();
-                        }
-                    }
-                } else {
-                    for (Map.Entry<String, Integer> entry : classifiedPlaces.get(j).entrySet()) {
-                        if (entry.getKey().equals(PLACES.get(i))) {
-                            trues += entry.getValue();
-                        } else {
-                            falseNegatives += entry.getValue();
-                        }
-                    }
-                }
-            }
-            truesAndFalses.get(i).add(trues);
-            truesAndFalses.get(i).add(falsePositives);
-            truesAndFalses.get(i).add(falseNegatives);
-//            System.out.print("\n");
-//            System.out.print(truesAndFalses.get(i));
-        }
 
         result.add(accuracy(truesAndFalses, allPlaces));
-        result.add(precision(truesAndFalses, allPlaces));
-        result.add(recall(truesAndFalses, allPlaces));
+        result.add(precisionAll(truesAndFalses, allPlaces));
+        result.add(recallAll(truesAndFalses, allPlaces));
         result.add(f1(result.get(result.size() - 1), result.get(result.size() - 2)));
-
+        for (int i = 0; i < PLACES.size(); i++) {
+            result.add(precision(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(1)));
+            result.add(recall(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(2)));
+            result.add(f1(result.get(result.size() - 1), result.get(result.size() - 2)));
+        }
         return result;
     }
 
@@ -64,7 +38,15 @@ public class ClassificationMeasurements {
         return result / sum;
     }
 
-    private static float precision(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
+    private static float precision(float truePositive, float falsePositive) {
+        if ((truePositive + falsePositive) != 0) {
+            return truePositive / (truePositive + falsePositive);
+        } else {
+            return 0;
+        }
+    }
+
+    private static float precisionAll(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
         float result = 0;
         int sum = 0;
         for (int i = 0; i < PLACES.size(); i++) {
@@ -74,7 +56,7 @@ public class ClassificationMeasurements {
 //                    System.out.print(entry.getKey());
 //                    System.out.print(truesAndFalses.get(i));
                     if ((truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(1)) != 0) {
-                        result += (float) (truesAndFalses.get(i).get(0) * entry.getValue()) / (truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(1));
+                        result += (float) precision(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(1)) * entry.getValue();
 //                        System.out.print(result);
                     } else {
                         result += 0;
@@ -87,7 +69,15 @@ public class ClassificationMeasurements {
         return result / sum;
     }
 
-    private static float recall(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
+    private static float recall(float truePositive, float falseNegative) {
+        if ((truePositive + falseNegative) != 0) {
+            return truePositive / (truePositive + falseNegative);
+        } else {
+            return 0;
+        }
+    }
+
+    private static float recallAll(List<List<Integer>> truesAndFalses, Map<String, Integer> allPlaces) {
         float result = 0;
         int sum = 0;
         for (int i = 0; i < PLACES.size(); i++) {
@@ -97,7 +87,7 @@ public class ClassificationMeasurements {
 //                    System.out.print(entry.getKey());
 //                    System.out.print(truesAndFalses.get(i));
                     if ((truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(2)) != 0) {
-                        result += (float) (truesAndFalses.get(i).get(0) * entry.getValue()) / (truesAndFalses.get(i).get(0) + truesAndFalses.get(i).get(2));
+                        result += (float) recall(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(2)) * entry.getValue();
 //                        System.out.print(result);
                     } else {
                         result += 0;
@@ -111,6 +101,10 @@ public class ClassificationMeasurements {
     }
 
     private static float f1(float precision, float recall) {
-        return (2 * precision * recall) / (precision + recall);
+        if ((precision + recall) != 0) {
+            return (2 * precision * recall) / (precision + recall);
+        } else {
+            return 0;
+        }
     }
 }
