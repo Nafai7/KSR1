@@ -16,8 +16,8 @@ public class ClassificationMeasurements {
         result.add(recallAll(truesAndFalses, allPlaces));
         result.add(f1(result.get(result.size() - 1), result.get(result.size() - 2)));
         for (int i = 0; i < PLACES.size(); i++) {
-            result.add(precision(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(1)));
-            result.add(recall(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(2)));
+            result.add(precision(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(2)));
+            result.add(recall(truesAndFalses.get(i).get(0), truesAndFalses.get(i).get(1)));
             result.add(f1(result.get(result.size() - 1), result.get(result.size() - 2)));
         }
         return result;

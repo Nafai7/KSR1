@@ -20,7 +20,7 @@ public class Main {
         try {
             // reading necessary stuff
             List<Dictionary> dictionaries = JsonReader.readMultipleDictionaries(DICTIONARIES_FILES);
-            List<Article> articles = SgmArticleReader.readMultipleFiles(TEST_FILES);
+            List<Article> articles = SgmArticleReader.readMultipleFiles(ARTICLE_FILES);
             List<String> stopWords = JsonReader.readStopWords(STOP_WORDS_FILE);
 
             for (int i = 0; i < articles.size(); i++) {
@@ -82,7 +82,27 @@ public class Main {
                     isUsed.add(false);
                 }
             }
-            System.out.println(isUsed);
+            System.out.println("""
+
+
+                    #####################################################
+                    #                                                   #
+                    #     The classification process is in progress     #
+                    #               Have a nice waiting!                #
+                    #                                                   #
+                    #                   █    █    █                     #
+                    #                    █    █    █                    #
+                    #                   █    █    █                     #
+                    #                 ███████████████                   #
+                    #                 █             ███                 #
+                    #                 █             █  █                #
+                    #                 █             ███                 #
+                    #                  █           █                    #
+                    #                   ███████████                     #
+                    #                                                   #
+                    #####################################################""");
+
+
             // divide into training and test lists
             int trainingSize = (articles.size() * training) / 100;
             Random random = new Random(69);
@@ -184,14 +204,14 @@ public class Main {
             for (int i = 0; i < PLACES.size(); i++) {
                 truesAndFalses.add(new ArrayList<Integer>());
                 int trues = 0;
-                int falsePositives = 0;
-                int falseNegatives = 0;
+                int falseNegative = 0;
+                int falsePositive = 0;
 
                 for (int j = 0; j < placesStats.size(); j++) {
                     if (i != j) {
                         for (Map.Entry<String, Integer> entry : placesStats.get(j).entrySet()) {
                             if (entry.getKey().equals(PLACES.get(i))) {
-                                falsePositives += entry.getValue();
+                                falseNegative += entry.getValue();
                             }
                         }
                     } else {
@@ -199,14 +219,14 @@ public class Main {
                             if (entry.getKey().equals(PLACES.get(i))) {
                                 trues += entry.getValue();
                             } else {
-                                falseNegatives += entry.getValue();
+                                falsePositive += entry.getValue();
                             }
                         }
                     }
                 }
                 truesAndFalses.get(i).add(trues);
-                truesAndFalses.get(i).add(falsePositives);
-                truesAndFalses.get(i).add(falseNegatives);
+                truesAndFalses.get(i).add(falseNegative);
+                truesAndFalses.get(i).add(falsePositive);
 //            System.out.print("\n");
 //            System.out.print(truesAndFalses.get(i));
             }
@@ -215,11 +235,12 @@ public class Main {
             System.out.print("Miary:\n");
             List<Float> measurments = ClassificationMeasurements.calculateClassifcationMeasurements(truesAndFalses, actualPlaces);
 
-            System.out.print("\n");
-            System.out.print(measurments);
+//            System.out.print("\n");
+//            System.out.print(measurments);
 
             StringBuilder output = new StringBuilder();
             System.out.print("\n");
+            output.append("Cechy: [" + isUsed + "]\n\n");
             output.append("STATYSTYKI:\n");
             output.append("Accuracy: " + measurments.get(0) + "\n");
             output.append("Precision: " + measurments.get(1) + "\n");
@@ -233,9 +254,9 @@ public class Main {
                     output.append(entry.getKey() + " " + entry.getValue() + ",");
                 }
                 output.append("]\n");
-                output.append("Precision" + measurments.get(4 + i * 3) + "\n");
-                output.append("Recall" + measurments.get(5 + i * 3) + "\n");
-                output.append("F1" + measurments.get(6 + i * 3) + "\n");
+                output.append("Precision: " + measurments.get(4 + i * 3) + "\n");
+                output.append("Recall: " + measurments.get(5 + i * 3) + "\n");
+                output.append("F1: " + measurments.get(6 + i * 3) + "\n");
             }
             System.out.print(output.toString());
 
