@@ -29,25 +29,19 @@ public class KNN {
 
         for (Iterator it = list.iterator(); it.hasNext();) {
             Map.Entry entry = (Map.Entry)it.next();
-//            System.out.print("\n");
-//            System.out.print((Float) entry.getValue());
+//            System.out.println((Float) entry.getValue());
             sortedDistances.put((FeatureVector) entry.getKey(), (Float) entry.getValue());
         }
-
-//        System.out.print("\n");
-//        System.out.print(sortedDistances.entrySet().stream().toList().get(0).getKey().getPlace());
+//        System.out.println(sortedDistances.entrySet().stream().toList().get(0).getKey().getPlace());
         Map<String, Integer> places = new HashMap<>();
-        for (int i = 0; i < k; i++) {
-//            System.out.print("\n");
-//            System.out.print(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace());
+        for (int i = sortedDistances.size() - 1; i >= sortedDistances.size() - k; i--) {
+//            System.out.println(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace());
             if (places.containsKey(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace())) {
                 places.put(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace(), places.get(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace()) + 1);
             } else {
                 places.put(sortedDistances.entrySet().stream().toList().get(i).getKey().getPlace(), 1);
             }
         }
-//        System.out.print("\n");
-//        System.out.print(places);
         int maxValue = 0;
         String result = "";
         for (Map.Entry<String, Integer> entry : places.entrySet()) {
