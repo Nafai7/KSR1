@@ -254,13 +254,22 @@ public class Main {
                     output.append(entry.getKey() + " " + entry.getValue() + ",");
                 }
                 output.append("]\n");
+                output.append("T: " + truesAndFalses.get(i).get(0) + ", FN: " + truesAndFalses.get(i).get(1) + ", FP: " + truesAndFalses.get(i).get(2) + "\n");
                 output.append("Precision: " + measurments.get(4 + i * 3) + "\n");
                 output.append("Recall: " + measurments.get(5 + i * 3) + "\n");
                 output.append("F1: " + measurments.get(6 + i * 3) + "\n");
             }
             System.out.print(output.toString());
-
-            FileWriter myWriter = new FileWriter("Results_" + metric + "_" + k + "_" + training + "_" + testing + ".txt");
+            String fileName = "Results_" + metric + "_" + k + "_" + training + "_" + testing + "_";
+            for (int i = 0; i < isUsed.size(); i++) {
+                if (isUsed.get(i)) {
+                    fileName += "t";
+                } else {
+                    fileName += "f";
+                }
+            }
+            fileName += ".txt";
+            FileWriter myWriter = new FileWriter(fileName);
             myWriter.write(output.toString());
             myWriter.close();
 
