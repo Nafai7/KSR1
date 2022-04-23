@@ -225,8 +225,8 @@ public class Main {
                     }
                 }
                 truesAndFalses.get(i).add(trues);
-                truesAndFalses.get(i).add(falseNegative);
                 truesAndFalses.get(i).add(falsePositive);
+                truesAndFalses.get(i).add(falseNegative);
 //            System.out.print("\n");
 //            System.out.print(truesAndFalses.get(i));
             }
@@ -242,22 +242,27 @@ public class Main {
             System.out.print("\n");
             output.append("Cechy: [" + isUsed + "]\n\n");
             output.append("STATYSTYKI:\n");
-            output.append("Accuracy: " + measurments.get(0) + "\n");
-            output.append("Precision: " + measurments.get(1) + "\n");
-            output.append("Recall: " + measurments.get(2) + "\n");
-            output.append("F1: " + measurments.get(3) + "\n");
+            output.append("Accuracy: " + (float)(Math.round(measurments.get(0)*1000))/1000 + "\n");
+            output.append("Precision: " + (float)(Math.round(measurments.get(1)*1000))/1000 + "\n");
+            output.append("Recall: " + (float)(Math.round(measurments.get(2)*1000))/1000 + "\n");
+            output.append("F1: " + (float)(Math.round(measurments.get(3)*1000))/1000 + "\n");
             for (int i = 0; i < placesStats.size(); i++) {
                 output.append("\n###############################\n");
                 output.append(PLACES.get(i) + " " + actualPlaces.get(PLACES.get(i)));
                 output.append("\n[");
+                List<Integer> c = new ArrayList<>();
                 for (Map.Entry<String, Integer> entry : placesStats.get(i).entrySet()) {
                     output.append(entry.getKey() + " " + entry.getValue() + ",");
+                    c.add(entry.getValue());
                 }
                 output.append("]\n");
+                if (c.size() == 6) {
+                    output.append(c.get(5) + "\t" + c.get(0) + "\t" + c.get(4) + "\t" + c.get(3) + "\t" + c.get(1) + "\t" + c.get(2) + "\n");
+                }
                 output.append("T: " + truesAndFalses.get(i).get(0) + ", FN: " + truesAndFalses.get(i).get(1) + ", FP: " + truesAndFalses.get(i).get(2) + "\n");
-                output.append("Precision: " + measurments.get(4 + i * 3) + "\n");
-                output.append("Recall: " + measurments.get(5 + i * 3) + "\n");
-                output.append("F1: " + measurments.get(6 + i * 3) + "\n");
+                output.append("Precision: " + (float)(Math.round(measurments.get(4 + i * 3)*1000))/1000 + "\n");
+                output.append("Recall: " + (float)(Math.round(measurments.get(5 + i * 3)*1000))/1000 + "\n");
+                output.append("F1: " + (float)(Math.round(measurments.get(6 + i * 3)*1000))/1000 + "\n");
             }
             System.out.print(output.toString());
             String fileName = "Results_" + metric + "_" + k + "_" + training + "_" + testing + "_";

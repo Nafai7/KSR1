@@ -42,12 +42,12 @@ public class FeatureVector {
         this.firstRegion = firstRegion;
         this.mostCommonRegion = mostCommonRegion;
         this.mostOccurringPlaceInRegions = mostOccurringPlaceInRegions;
-        this.percentageOfMostOccurringPlaceInRegions = percentageOfMostOccurringPlaceInRegions;
+        this.percentageOfMostOccurringPlaceInRegions = percentageOfMostOccurringPlaceInRegions/100;
         this.firstCurrency = firstCurrency;
         this.mostCommonCurrency = mostCommonCurrency;
         this.firstCelebrity = firstCelebrity;
         this.firstPolitician = firstPolitician;
-        this.percentageOfMostOccurringPlaceInPoliticians = percentageOfMostOccurringPlaceInPoliticians;
+        this.percentageOfMostOccurringPlaceInPoliticians = percentageOfMostOccurringPlaceInPoliticians/100;
         this.place = "";
         this.isUsed = isUsed;
     }
